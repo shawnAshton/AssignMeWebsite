@@ -1,8 +1,11 @@
 const express = require("express");
+const { Pool } = require("pg");
 const app = express();
 const port = process.env.PORT || 5000;
 const dbConnectionString = process.env.DATABASE_URL || "something";
+const pool = new Pool({connectionString: dbConnectionString});
 
+app.use(express.static(__dirname + '/public'));
 app.get("/", function(req,res)
 {
    console.log("request was recieved. HOME PAGE");
