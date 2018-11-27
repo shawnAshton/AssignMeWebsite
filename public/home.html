@@ -32,7 +32,35 @@
       // divTag.insertBefore(document.createTextNode(" "), button);
       divTag.insertBefore(document.createTextNode(" "), newTextBoxJob);
    }
+
+      function addTextBoxes2() {
+      //Create input types dynamically and insert in front of the button
+      var newTextBoxName = document.createElement("input");
+      var newTextBoxJob = document.createElement("input");
+      var button = document.getElementById("button");
+
+      //change the attributes of the input tag to make sure they are correct
+      newTextBoxName.setAttribute("type", "text");
+      newTextBoxName.setAttribute("name", "names[]");
+      newTextBoxName.setAttribute("placeholder", "enter a name");
+      newTextBoxName.setAttribute("required", "true");
+      newTextBoxJob.setAttribute("type", "text");
+      newTextBoxJob.setAttribute("name", "jobs[]");
+      newTextBoxJob.setAttribute("placeholder", "enter a job");
+      newTextBoxJob.setAttribute("required", "true");
+
+      var divTag = document.getElementById("textbox2");
+      divTag.appendChild(newTextBoxName);
+      divTag.appendChild(newTextBoxJob);
+      divTag.insertBefore(document.createElement("BR"), newTextBoxName);
+      divTag.insertBefore(document.createElement("BR"), newTextBoxName);
+      // divTag.insertBefore(newTextBoxName, button);
+      // divTag.insertBefore(newTextBoxJob, button);
+      // divTag.insertBefore(document.createTextNode(" "), button);
+      divTag.insertBefore(document.createTextNode(" "), newTextBoxJob);
+   }
    </script>
+   <link rel="stylesheet" type="text/css" href="pretty.css">
 </head>
 <body>
    <form id = "nameForm" action="insertProject.php" method="POST">
@@ -47,18 +75,18 @@
 
       <h3>Add People Names and Jobs to rotate through</h3>
       <br/>
-      <table>
-         <tr><div id="textbox">
+      <div class="flex-container">
+         <div id="textbox">
             <input type="button" id="button" value="Add Person and Job box" onclick="addTextBoxes()"/><br><br>
             <input type="text" name="names[]" id="input" placeholder="enter a name" required>
             <input type="text" name="jobs[]"  placeholder="enter a job" required>
-         </div></tr>
-         <tr><div id="textbox">
-            <input type="button" id="button" value="Add Person and Job box" onclick="addTextBoxes()"/><br><br>
+         </div>
+         <div id="textbox2">
+            <input type="button" id="button" value="Add Person and Job box" onclick="addTextBoxes2()"/><br><br>
             <input type="text" name="names[]" id="input" placeholder="enter a name" required>
             <input type="text" name="jobs[]"  placeholder="enter a job" required>
-         </div></tr>
-      </table>
+         </div>
+      </div>
 
 
       <br>
