@@ -24,7 +24,7 @@ function getProject(req,res)
    var id = req.query.id;
    getProjectFromDB(id, function(error,result)
    {
-      if(error || result == null || result.length <= 1)
+      if(error || result == null || result.length < 1)
       {
          console.log("length is: ");
          console.log(result.length);
