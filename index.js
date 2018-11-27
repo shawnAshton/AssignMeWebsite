@@ -34,7 +34,7 @@ function getPerson(req,res)
    });
 }
 
-function getPersonFromDb(id, callback)
+function getPersonFromDB(id, callback)
 {
    var sql = "SELECT * FROM project";
    var params = [id];
