@@ -37,7 +37,7 @@ function getProject(req,res)
 
 function getProjectFromDB(id, callback)
 {
-   var sql = "SELECT title * project WHERE id = $1::int";
+   var sql = "SELECT title, program_user_id project WHERE id = $1::int";
    var params = [id];
    pool.query(sql,params,function(err,result)
    {
