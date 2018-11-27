@@ -37,16 +37,9 @@ function getProject(req,res)
 
 function getProjectFromDB(id, callback)
 {
-   var sql = "SELECT w.name, j.job_title, jw.instance_of_meeting," + 
-   "p.title, p.id,p.program_user_id,pu.id, pu.username," +
-         "j.project_id, j.id, jw.job_id, w.id, jw.worker_id FROM worker w" +
-   "JOIN job_worker jw ON w.id = jw.worker_id" +
-   "JOIN job j ON jw.job_id = j.id" +
-   "JOIN project p ON j.project_id = p.id" +
-   "JOIN program_user pu ON p.program_user_id = pu.id" +
-   "WHERE p.id = 1 ORDER BY jw.instance_of_meeting, w.name";
+   var sql = "SELECT title, program_user_id FROM project WHERE id = $1::int";
    var params = [id];
-   pool.query(sql,function(err,result)
+   pool.query(sql,params,function(err,result)
    {
       if(err)
       {
