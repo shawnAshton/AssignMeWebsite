@@ -13,13 +13,42 @@ app.get("/", function(req,res)
    res.end();
 });
 
-app.get("/person", getPerson)
+app.get("/project", getPerson)
 function getPerson(req,res)
 {
    //get id from the req...
    console.log("getting person...");
    console.log("TRYING TO CONNECT TO DATABASE" + dbConnectionString);
    res.json({name:"john"});
+   // var id = request.query.id;
+   // getProjectFromDB(id, function(error,result)
+   // {
+   //    if(error || result == null || result.length != 1)
+   //    {
+   //       response.status(500).json({success: false, data: error});
+   //    }
+   //    else
+   //    {
+   //       response.status(200).json(result[0]);
+   //    }
+   // });
+}
+
+function getPersonFromDb(id, callback)
+{
+   var sql = "SELECT * FROM project";
+   var params = [id];
+   pool.query(sql,params,function(err,result)
+   {
+      if(err)
+      {
+         console.log("error in query: ")
+         console.log(err);
+         callback(err,null);
+      }
+      console.log("Found result: " + JSON.stringify(result.rows));
+      callback(null, result.rows);
+   })
 }
 
 app.listen(port, function()
