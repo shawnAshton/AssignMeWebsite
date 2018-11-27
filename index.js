@@ -14,6 +14,15 @@ app.get("/", function(req,res)
    res.end();
 });
 
+
+
+
+app.post("/createProject", createProject)
+functioncreateProject(req,res)
+{
+
+}
+
 app.get("/project", getProject)
 function getProject(req,res)
 {
