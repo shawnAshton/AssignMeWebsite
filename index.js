@@ -18,9 +18,9 @@ app.get("/", function(req,res)
 
 
 app.post("/createProject", createProject)
-functioncreateProject(req,res)
+function createProject(req,res)
 {
-
+   console.log("TRYING TO CREATE PROJECT");
 }
 
 app.get("/project", getProject)
