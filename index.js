@@ -13,11 +13,11 @@ app.get("/", function(req,res)
    res.end();
 });
 
-app.get("/project", getPerson)
-function getPerson(req,res)
+app.get("/project", getProject)
+function getProject(req,res)
 {
    //get id from the req...
-   console.log("getting person...");
+   console.log("getting project...");
    console.log("TRYING TO CONNECT TO DATABASE" + dbConnectionString);
   // res.json({name:"john"});
    var id = req.query.id;
@@ -29,7 +29,7 @@ function getPerson(req,res)
       }
       else
       {
-         res.status(200).json(result[0]);
+         res.status(200).json(result);
       }
    });
 }
