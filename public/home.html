@@ -35,25 +35,19 @@
 
       function addTextBoxes2() {
       //Create input types dynamically and insert in front of the button
-      var newTextBoxName = document.createElement("input");
       var newTextBoxJob = document.createElement("input");
       var button = document.getElementById("button");
 
       //change the attributes of the input tag to make sure they are correct
-      newTextBoxName.setAttribute("type", "text");
-      newTextBoxName.setAttribute("name", "names[]");
-      newTextBoxName.setAttribute("placeholder", "enter a name");
-      newTextBoxName.setAttribute("required", "true");
       newTextBoxJob.setAttribute("type", "text");
       newTextBoxJob.setAttribute("name", "jobs[]");
       newTextBoxJob.setAttribute("placeholder", "enter a job");
       newTextBoxJob.setAttribute("required", "true");
 
       var divTag = document.getElementById("textbox2");
-      divTag.appendChild(newTextBoxName);
       divTag.appendChild(newTextBoxJob);
-      divTag.insertBefore(document.createElement("BR"), newTextBoxName);
-      divTag.insertBefore(document.createElement("BR"), newTextBoxName);
+      divTag.insertBefore(document.createElement("BR"), newTextBoxJob);
+
       // divTag.insertBefore(newTextBoxName, button);
       // divTag.insertBefore(newTextBoxJob, button);
       // divTag.insertBefore(document.createTextNode(" "), button);
