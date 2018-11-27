@@ -20,7 +20,7 @@ function getPerson(req,res)
    console.log("getting person...");
    console.log("TRYING TO CONNECT TO DATABASE" + dbConnectionString);
   // res.json({name:"john"});
-   var id = request.query.id;
+   var id = req.query.id;
    getProjectFromDB(id, function(error,result)
    {
       if(error || result == null || result.length != 1)
