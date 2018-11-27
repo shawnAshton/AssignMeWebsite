@@ -26,6 +26,13 @@ function getProject(req,res)
    {
       if(error || result == null || result.length != 1)
       {
+         console.log("length is: ");
+         console.log(result.length);
+         if (result == null)
+         {
+            console.log("result is null");
+         }
+         console.log(error);
          res.status(500).json({success: false, data: error});
       }
       else
