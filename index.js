@@ -1,11 +1,12 @@
 const express = require("express");
-const { Pool } = require("pg");
 const app = express();
+const { Pool } = require("pg");
 const port = process.env.PORT || 5000;
 const dbConnectionString = process.env.DATABASE_URL || "something";
 const pool = new Pool({connectionString: dbConnectionString});
 
 app.use(express.static(__dirname + '/public'));
+app.set('port', port);
 app.get("/", function(req,res)
 {
    console.log("request was recieved. HOME PAGE");
@@ -29,7 +30,7 @@ function getProject(req,res)
       }
       else
       {
-         res.status(200).json(result); 
+         res.status(200).json(result);  
       }
    });
 }
