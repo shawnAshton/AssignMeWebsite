@@ -43,7 +43,7 @@ function getProjectFromDB(id, callback)
    JOIN job j ON jw.job_id = j.id\
    JOIN project p ON j.project_id = p.id\
    JOIN program_user pu ON p.program_user_id = pu.id\
-   WHERE p.id = 1\
+   WHERE p.id = $1::int\
    ORDER BY jw.instance_of_meeting, w.name";
 
    var params = [id];
