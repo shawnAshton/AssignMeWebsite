@@ -29,7 +29,7 @@ function createProject(req,res)
    console.log("mytitle: " + title);
    console.log("numRotations: " + numRotations);
    console.log("NAMES");
-   console.log("worker #: " + workers[i]);
+   console.log("worker #: " + workers);
    // for(var i = 0 i < workers.length; i++)
    // {
    //    console.log("worker #: " + i + workers[i]);
