@@ -6,6 +6,8 @@ const dbConnectionString = process.env.DATABASE_URL || "something";
 const pool = new Pool({connectionString: dbConnectionString});
 
 app.use(express.static(__dirname + '/public'));
+app.use(express.json()) // supports json encoded bodies
+app.use(express.urlencoded({extended:true}))//supports url encoded bodies
 app.set('port', port);
 app.get("/", function(req,res)
 {
@@ -20,6 +22,10 @@ app.get("/", function(req,res)
 app.post("/createProject", createProject)
 function createProject(req,res)
 {
+   var title = req.body.projectTitle;
+   var numRotations = req.body.totalMeetings;
+   console.log("mytitle: " + title);
+   console.log("numRotations: " + numRotations);
    console.log("TRYING TO CREATE PROJECT");
 }
 
