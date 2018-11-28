@@ -24,6 +24,8 @@ function createProject(req,res)
 {
    var title = req.body.projectTitle;
    var numRotations = req.body.totalMeetings;
+   var workers = req.body.names[];
+   var jobs = req.body.jobs[];
    console.log("mytitle: " + title);
    console.log("numRotations: " + numRotations);
    console.log("TRYING TO CREATE PROJECT");
