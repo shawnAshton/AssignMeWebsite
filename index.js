@@ -23,16 +23,17 @@ app.post("/createProject", createProject)
 function createProject(req,res)
 {
    var title = req.body.projectTitle;
-   var numRotations = req.body.totalMeetings;
+   var numRotations = req.body.totalMeetings; //GET ARRAY FROM POST
    var workers = req.body.names;
    var jobs = req.body.jobs;
    console.log("mytitle: " + title);
    console.log("numRotations: " + numRotations);
    console.log("NAMES");
-   for(var i = 0 i < workers.length; i++)
-   {
-      console.log("worker #: " + i + workers[i]);
-   }
+   console.log("worker #: " + workers[i]);
+   // for(var i = 0 i < workers.length; i++)
+   // {
+   //    console.log("worker #: " + i + workers[i]);
+   // }
    console.log("TRYING TO CREATE PROJECT");
 }
 
