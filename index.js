@@ -28,6 +28,11 @@ function createProject(req,res)
    var jobs = req.body.jobs;
    console.log("mytitle: " + title);
    console.log("numRotations: " + numRotations);
+   console.log("NAMES");
+   for(var i = 0 i < workers.length; i++)
+   {
+      console.log("worker #: " + i + workers[i]);
+   }
    console.log("TRYING TO CREATE PROJECT");
 }
 
