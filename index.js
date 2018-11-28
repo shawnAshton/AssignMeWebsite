@@ -29,6 +29,7 @@ function createProject(req,res)
    console.log("mytitle: " + title);
    console.log("numRotations: " + numRotations);
    console.log("NAMES");
+   console.log("worker count: " + workers.length);
    console.log("worker #: " + workers[1]);
    // for(var i = 0 i < workers.length; i++)
    // {
