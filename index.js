@@ -16,10 +16,7 @@ app.get("/", function(req,res)
    res.end();
 });
 
-
-
-
-app.post("/createProject", createProject)
+app.post("/createProject", createProject) //WORK ON INPUTTING INTO DATABASE AND WHAT TO HAVE IT RETURN..?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 function createProject(req,res)
 {
    var title = req.body.projectTitle;
@@ -30,7 +27,6 @@ function createProject(req,res)
    console.log("numRotations: " + numRotations);
    console.log("NAMES");
    console.log("worker count: " + workers.length);
-   console.log("worker #: " + workers[1]);
    for(var i = 0; i < workers.length; i++)
     {
       console.log("worker #: " + i + workers[i]);
@@ -41,6 +37,53 @@ function createProject(req,res)
     }
    console.log("TRYING TO CREATE PROJECT");
 }
+
+app.get("/projectList", getProjectList)
+function getProjectList(req,res)
+{
+   //get user_id from the req...
+   console.log("getting project list...");
+   console.log("TRYING TO CONNECT TO DATABASE" + dbConnectionString);
+  // res.json({name:"john"});
+   var user_id = req.query.id;
+   getProjectListFromDB(user_id, function(error,result)
+   {
+      if(error || result == null || result.length < 1)
+      {
+         console.log("length is: ");
+         console.log(result.length);
+         if (result == null)
+         {
+            console.log("result is null");
+         }
+         console.log("error is: " + error);
+         res.status(500).json({success: false, data: error});
+      }
+      else
+      {
+         res.status(200).json(result);  
+      }
+   });
+}
+
+function getProjectListFromDB(user_id, callback)
+{
+   var sql = "SELECT p.title, p.id FROM project p JOIN program_user pu ON p.program_user_id = pu.id WHERE pu.id = $1::int";
+   var params = [user_id];
+   pool.query(sql,params,function(err,result)
+   {
+      if(err)
+      {
+         console.log("error in query: ")
+         console.log(err);
+         callback(err,null);
+      }
+      console.log("Found result: " + JSON.stringify(result.rows));
+      callback(null, result.rows);
+   })
+}
+
+
 
 app.get("/project", getProject)
 function getProject(req,res)
