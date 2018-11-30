@@ -35,6 +35,10 @@ function createProject(req,res)
     {
       console.log("worker #: " + i + workers[i]);
     }
+   for(var i = 0; i < jobs.length; i++)
+    {
+      console.log("job #: " + i + jobs[i]);
+    }
    console.log("TRYING TO CREATE PROJECT");
 }
 
