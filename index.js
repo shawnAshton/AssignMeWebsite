@@ -16,27 +16,7 @@ app.get("/", function(req,res)
    res.end();
 });
 
-app.post("/createProject", createProject) //WORK ON INPUTTING INTO DATABASE AND WHAT TO HAVE IT RETURN..?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-function createProject(req,res)
-{
-   var title = req.body.projectTitle;
-   var numRotations = req.body.totalMeetings; //GET ARRAY FROM POST
-   var workers = req.body.names;
-   var jobs = req.body.jobs;
-   console.log("mytitle: " + title);
-   console.log("numRotations: " + numRotations);
-   console.log("NAMES");
-   console.log("worker count: " + workers.length);
-   for(var i = 0; i < workers.length; i++)
-    {
-      console.log("worker #: " + i + workers[i]);
-    }
-   for(var i = 0; i < jobs.length; i++)
-    {
-      console.log("job #: " + i + jobs[i]);
-    }
-   console.log("TRYING TO CREATE PROJECT");
-}
+
 
 app.get("/projectList", getProjectList)
 function getProjectList(req,res)
@@ -135,6 +115,37 @@ function getProjectFromDB(id, callback)
       console.log("Found result: " + JSON.stringify(result.rows));
       callback(null, result.rows);
    })
+}
+
+app.post("/createUser", createUser) //WORK ON INPUTTING INTO DATABASE AND WHAT TO HAVE IT RETURN..?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+function createUser(req,res)
+{
+   var newUsername = req.body.username;
+   console.log("USERNAME FROM POST IS " + newUsername);
+   console.log("TRYING TO CREATE PROJECT");
+}
+
+
+app.post("/createProject", createProject) //WORK ON INPUTTING INTO DATABASE AND WHAT TO HAVE IT RETURN..?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+function createProject(req,res)
+{
+   var title = req.body.projectTitle;
+   var numRotations = req.body.totalMeetings; //GET ARRAY FROM POST
+   var workers = req.body.names;
+   var jobs = req.body.jobs;
+   console.log("mytitle: " + title);
+   console.log("numRotations: " + numRotations);
+   console.log("NAMES");
+   console.log("worker count: " + workers.length);
+   for(var i = 0; i < workers.length; i++)
+    {
+      console.log("worker #: " + i + workers[i]);
+    }
+   for(var i = 0; i < jobs.length; i++)
+    {
+      console.log("job #: " + i + jobs[i]);
+    }
+   console.log("TRYING TO CREATE PROJECT");
 }
 
 app.listen(port, function()
