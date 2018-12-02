@@ -127,7 +127,7 @@ function createUser(req,res)
 
 
    var sql = "INSERT INTO program_user(username,password) VALUES ($1, $2)";
-   var params = [newUsername,newPassword;
+   var params = [newUsername,newPassword];
    pool.query(sql,params,function(err)
    {
       if (err)
