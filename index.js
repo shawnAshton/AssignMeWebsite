@@ -117,7 +117,59 @@ function getProjectFromDB(id, callback)
    })
 }
 
-app.post("/createUser", createUser) //WORK ON INPUTTING INTO DATABASE AND WHAT TO HAVE IT RETURN..?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+app.get("/user", getUser)
+function getUser(req,res)
+{
+   //get id from the req...
+   console.log("getting username...");
+   console.log("TRYING TO CONNECT TO DATABASE" + dbConnectionString);
+  // res.json({name:"john"});
+   var name = req.query.name;
+   getUserFromDB(name, function(error,result)
+   {
+      if(error || result == null || result.length < 1)
+      {
+         console.log("length is: ");
+         console.log(result.length);
+         if (result == null)
+         {
+            console.log("result is null");
+         }
+         console.log("error is: " + error);
+         res.status(500).json({success: false, data: error});
+      }
+      else
+      {
+         res.status(200).json(result);  
+      }
+   });
+}
+
+function getUserFromDB(name, callback)
+{
+   var sql = "SELECT * FROM program_user pu WHERE pu.username = $1";
+   var params = [name];
+   pool.query(sql,params,function(err,result)
+   {
+      if(err)
+      {
+         console.log("error in query: ")
+         console.log(err);
+         callback(err,null);
+      }
+      console.log("Found result: " + JSON.stringify(result.rows));
+      callback(null, result.rows);
+   })
+}
+
+
+
+
+
+
+
+app.post("/createUser", createUser) //how do I make secure password? it gets into database, but it times out here...
 function createUser(req,res)
 {
    var newUsername = req.body.username;
