@@ -117,12 +117,18 @@ function getProjectFromDB(id, callback)
    })
 }
 
-app.post("/createUser", createUser) //WORK ON INPUTTING INTO DATABASE AND WHAT TO HAVE IT RETURN..?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+app.post("/createUser", createUser)
 function createUser(req,res)
 {
    var newUsername = req.body.username;
+   var newPassword = req.body.password;
    console.log("USERNAME FROM POST IS " + newUsername);
-   console.log("TRYING TO CREATE PROJECT");
+   console.log("TRYING TO CREATE username");
+
+
+   var sql = "INSERT INTO program_user(username,password) VALUES ($1, $2)";
+   var params = [newUsername,newPassword];
+   pool.query(sql,params,function()
 }
 
 
