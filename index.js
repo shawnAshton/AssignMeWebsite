@@ -134,7 +134,7 @@ function createUser(req,res)
       {
          console.log("error in createUser");
       }
-   }
+   })
 }
 
 
