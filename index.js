@@ -121,12 +121,13 @@ app.post("/createUser", createUser) //WORK ON INPUTTING INTO DATABASE AND WHAT T
 function createUser(req,res)
 {
    var newUsername = req.body.username;
+   var newPassword = req.body.password;
    console.log("USERNAME FROM POST IS " + newUsername);
    console.log("TRYING TO CREATE username");
 
 
    var sql = "INSERT INTO program_user(username,password) VALUES ($1, $2)";
-   var params = [id];
+   var params = [newUsername];
    pool.query(sql,params,function(err)
    {
       if (err)
