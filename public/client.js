@@ -1,6 +1,7 @@
 
 function ajaxRequest()
 {
+   var div = document.getElementbyId
    div.innerHTML = "";
    var xhttp = new XMLHttpRequest();
    xhttp.onreadystatechange = function()
