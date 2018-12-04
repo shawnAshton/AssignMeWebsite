@@ -13,6 +13,8 @@ function ajaxRequest()
          console.log(jsonResults);
       }
    };
+   //not sending variables?
    xhttp.open("POST", "/createUser", true);
+  // xhttp.responseType = 'json';
    xhttp.send();
 }

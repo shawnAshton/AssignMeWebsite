@@ -176,7 +176,7 @@ function createUser(req,res)
       }
       else
       {
-         res.status(500).json({success: true, data: "success"});
+         res.status(200).json({success: true, data: "success"});
       }
    })
    res.end();
