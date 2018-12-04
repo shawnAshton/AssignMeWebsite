@@ -16,8 +16,6 @@ app.get("/", function(req,res)
    res.end();
 });
 
-
-
 app.get("/projectList", getProjectList)
 function getProjectList(req,res)
 {
@@ -45,7 +43,6 @@ function getProjectList(req,res)
       }
    });
 }
-
 function getProjectListFromDB(user_id, callback)
 {
    var sql = "SELECT p.title, p.id FROM project p JOIN program_user pu ON p.program_user_id = pu.id WHERE pu.id = $1::int";
@@ -62,7 +59,6 @@ function getProjectListFromDB(user_id, callback)
       callback(null, result.rows);
    })
 }
-
 
 
 app.get("/project", getProject)
@@ -92,7 +88,6 @@ function getProject(req,res)
       }
    });
 }
-
 function getProjectFromDB(id, callback)
 {
    var sql = "SELECT w.name, j.job_title, jw.instance_of_meeting, p.title, p.id,p.program_user_id,pu.id, pu.username," +
@@ -116,7 +111,6 @@ function getProjectFromDB(id, callback)
       callback(null, result.rows);
    })
 }
-
 
 app.get("/user", getUser)
 function getUser(req,res)
@@ -145,7 +139,6 @@ function getUser(req,res)
       }
    });
 }
-
 function getUserFromDB(name, callback)
 {
    var sql = "SELECT * FROM program_user pu WHERE pu.username = $1";
@@ -163,13 +156,7 @@ function getUserFromDB(name, callback)
    })
 }
 
-
-
-
-
-
-
-app.post("/createUser", createUser) //how do I make secure password? it gets into database, but it times out here...
+app.post("/createUser", createUser) // how do I make secure password? it gets into database, but it times out here...
 function createUser(req,res)
 {
    var newUsername = req.body.username;
@@ -187,14 +174,14 @@ function createUser(req,res)
          console.log("error in createUser");
       }
    })
+   res.end();
 }
-
 
 app.post("/createProject", createProject) //WORK ON INPUTTING INTO DATABASE AND WHAT TO HAVE IT RETURN..?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 function createProject(req,res)
 {
    var title = req.body.projectTitle;
-   var numRotations = req.body.totalMeetings; //GET ARRAY FROM POST
+   var numRotations = req.body.totalMeetings; 
    var workers = req.body.names;
    var jobs = req.body.jobs;
    console.log("mytitle: " + title);
