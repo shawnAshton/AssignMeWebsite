@@ -112,6 +112,36 @@ function getProjectFromDB(id, callback)
    })
 }
 
+app.post("/authenticate", authenticate) // how do I make secure password? it gets into database, but it times out here...
+function authenticate(req,res)
+{
+   var checkUsername = req.body.username;
+   var checkPassword = req.body.password;
+   console.log("CHECK USERNAME FROM POST IS " + checkUsername);
+   console.log("TRYING TO CREATE username");
+
+
+   getUserFromDB(checkUsername, function(error,result)
+   {
+      if(error || result == null || result.length < 1)
+      {
+         console.log("length is: ");
+         console.log(result.length);
+         if (result == null)
+         {
+            console.log("result is null");
+         }
+         console.log("error is: " + error);
+         res.status(500).json({success: false, data: error});
+      }
+      else
+      {
+         res.status(200).json(result);  
+      }
+   });
+   res.end();
+}
+
 app.get("/user", getUser)
 function getUser(req,res)
 {
@@ -179,36 +209,6 @@ function createUser(req,res)
          res.status(200).json({success: true, data: "success"});
       }
    })
-   res.end();
-}
-
-app.post("/authenticate", authenticate) // how do I make secure password? it gets into database, but it times out here...
-function authenticate(req,res)
-{
-   var checkUsername = req.body.username;
-   var checkPassword = req.body.password;
-   console.log("CHECK USERNAME FROM POST IS " + checkUsername);
-   console.log("TRYING TO CREATE username");
-
-
-   getUserFromDB(checkUsername, function(error,result)
-   {
-      if(error || result == null || result.length < 1)
-      {
-         console.log("length is: ");
-         console.log(result.length);
-         if (result == null)
-         {
-            console.log("result is null");
-         }
-         console.log("error is: " + error);
-         res.status(500).json({success: false, data: error});
-      }
-      else
-      {
-         res.status(200).json(result);  
-      }
-   });
    res.end();
 }
 
