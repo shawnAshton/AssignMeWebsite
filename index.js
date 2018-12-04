@@ -183,7 +183,7 @@ function createUser(req,res)
 }
 
 app.post("/authenticate", authenticate) // how do I make secure password? it gets into database, but it times out here...
-function createUser(req,res)
+function authenticate(req,res)
 {
    var checkUsername = req.body.username;
    var checkPassword = req.body.password;
