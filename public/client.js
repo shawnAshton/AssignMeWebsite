@@ -8,7 +8,7 @@ function ajaxRequest()
    {
       if (this.readyState == 4 && this.status == 200) 
       {
-         var jsonResults =JSON.parse(this.responseText);
+         var jsonResults =json.parse(this.responseText);
          div.innerHTML = jsonResults;
          console.log(jsonResults);
       }
