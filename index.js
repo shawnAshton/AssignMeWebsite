@@ -6,8 +6,13 @@ const dbConnectionString = process.env.DATABASE_URL || "something";
 const pool = new Pool({connectionString: dbConnectionString});
 
 app.use(express.static(__dirname + '/public'));
+//this is to help with post
 app.use(express.json()) // supports json encoded bodies
 app.use(express.urlencoded({extended:true}))//supports url encoded bodies
+//this helps display
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+
 app.set('port', port);
 app.get("/", function(req,res)
 {
@@ -139,6 +144,11 @@ function authenticate(req,res)
          res.status(200).json(result);
          console.log("ok...im almost there...\nindex 0 is this!!!!!!!!!!!!!!!!!!!!");
          // I NEED TO FIGURE OUT HOW TO USE RESULTS
+         var params = {};
+         console.log("****USERNAME", result.username);
+         console.log("****PASSWORD", result.password);
+         console.log("****id", result.id);
+         //response.render('pages/authenticate', params);
       }
    });
    res.end();
