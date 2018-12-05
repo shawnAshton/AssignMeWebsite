@@ -141,7 +141,7 @@ function authenticate(req,res)
       }
       else
       {
-         res.status(200).json(result);
+         // res.status(200).json(result);
          console.log("ok...im almost there...\nindex 0 is this!!!!!!!!!!!!!!!!!!!!");
          // I NEED TO FIGURE OUT HOW TO USE RESULTS
          var params = {};
