@@ -152,7 +152,7 @@ function authenticate(req,res)
          res.render('pages/authenticate', params);
       }
    });
-   res.end();
+   // res.end();
 }
 
 app.get("/user", getUser)
