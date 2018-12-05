@@ -148,7 +148,7 @@ function authenticate(req,res)
          console.log("****USERNAME", result);
          console.log("****PASSWORD", result[0].password);
          console.log("****id", result[0].id);
-         response.render('authenticate', result);
+         response.render('authenticate', paramss);
       }
    });
    res.end();
