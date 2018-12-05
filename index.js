@@ -145,7 +145,8 @@ function authenticate(req,res)
          console.log("ok...im almost there...\nindex 0 is this!!!!!!!!!!!!!!!!!!!!");
          // I NEED TO FIGURE OUT HOW TO USE RESULTS
          var params = {username: result[0].username, password: result[0].password, id:result[0].id};
-         console.log("****USERNAME", result);
+         console.log("****result", result);
+         console.log("****USERNAME", result[0].username);
          console.log("****PASSWORD", result[0].password);
          console.log("****id", result[0].id);
          res.render('authenticate', params);
