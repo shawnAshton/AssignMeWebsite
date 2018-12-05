@@ -118,7 +118,7 @@ function authenticate(req,res)
    var checkUsername = req.body.username;
    var checkPassword = req.body.password;
    console.log("CHECK USERNAME FROM POST IS " + checkUsername);
-   console.log("TRYING TO CREATE username");
+   console.log("TRYING TO authenticate username");
 
 
    getUserFromDB(checkUsername, function(error,result)
@@ -136,7 +136,9 @@ function authenticate(req,res)
       }
       else
       {
-         res.status(200).json(result);  
+         res.status(200).json(result);
+         console.log("ok...im almost there...\nindex 0 is this!!!!!!!!!!!!!!!!!!!!");
+         // I NEED TO FIGURE OUT HOW TO USE RESULTS
       }
    });
    res.end();
