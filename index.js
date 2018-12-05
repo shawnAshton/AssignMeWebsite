@@ -145,9 +145,9 @@ function authenticate(req,res)
          console.log("ok...im almost there...\nindex 0 is this!!!!!!!!!!!!!!!!!!!!");
          // I NEED TO FIGURE OUT HOW TO USE RESULTS
          var params = {};
-         console.log("****USERNAME", result.username);
-         console.log("****PASSWORD", result.password);
-         console.log("****id", result.id);
+         // console.log("****USERNAME", result.username);
+         // console.log("****PASSWORD", result.password);
+         // console.log("****id", result.id);
          //response.render('pages/authenticate', params);
       }
    });
