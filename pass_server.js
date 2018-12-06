@@ -54,7 +54,7 @@ app.post('/login', function(req,res)
    var pass = req.body.password;
    // console.log(name);
    // console.log(pass);
-   checkUserFromDB(name, password, function(error,result)
+   checkUserFromDB(name, pass, function(error,result)
    {
       if (error || result == null || result.length < 1)
       {
