@@ -69,6 +69,7 @@ app.post('/login', function(req,res)
       }
       else
       {
+         req.session.username = name;
          console.log(result);
          res.status(200).json({success:true});
       }
