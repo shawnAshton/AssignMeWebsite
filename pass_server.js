@@ -72,7 +72,7 @@ app.post('/login', function(req,res)
          console.log(result);
          res.status(200).json({success:true});
       }
-   }
+   })
 
 
    // if(theyExist) //THIS WILL CHANGE
