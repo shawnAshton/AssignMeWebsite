@@ -42,7 +42,7 @@ app.set('port', port);
 app.get("/", function(req,res)
 {
    console.log("request was recieved. HOME PAGE");
-   res.write("HERRO you are at a nice page... maybe you want a file...");
+   res.write("HERRO you are at a right page...");
    res.end();
 });
 
