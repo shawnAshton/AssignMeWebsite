@@ -129,7 +129,7 @@ function authenticate(req,res)
    console.log("TRYING TO authenticate username");
 
 
-   getUserFromDB(checkUsername, function(error,result)
+   getUserFromDB(checkUsername, checkPassword, function(error,result)
    {
       if(error || result == null || result.length < 1)
       {
@@ -167,7 +167,7 @@ function login(req,res)
    console.log("TRYING TO login username");
 
 
-   getUserFromDB(checkUsername, function(error,result)
+   getUserFromDB(checkUsername, checkPassword, function(error,result)
    {
       if(error || result == null || result.length < 1)
       {
@@ -218,10 +218,10 @@ function getUser(req,res)
       }
    });
 }
-function getUserFromDB(name, callback)
+function getUserFromDB(name, pass, callback)
 {
-   var sql = "SELECT * FROM program_user pu WHERE pu.username = $1";
-   var params = [name];
+   var sql = "SELECT * FROM program_user pu WHERE pu.username = $1 and pu.password = $2";
+   var params = [name, pass];
    pool.query(sql,params,function(err,result)
    {
       if(err)
