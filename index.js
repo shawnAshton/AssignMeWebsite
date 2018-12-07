@@ -5,6 +5,9 @@ const port = process.env.PORT || 5000;
 const dbConnectionString = process.env.DATABASE_URL || "something";
 const pool = new Pool({connectionString: dbConnectionString});
 
+var session = require('express-session');
+app.use(session({secret: 'none', cookie:{maxAge:60000}, resave:false, saveUninitialized:false}))
+
 app.use(express.static(__dirname + '/public'));
 //this is to help with post
 app.use(express.json()) // supports json encoded bodies
@@ -180,14 +183,9 @@ function login(req,res)
       else
       {
          // res.status(200).json(result);
-         console.log("ok...im almost there...\nindex 0 is this!!!!!!!!!!!!!!!!!!!!");
-         // I NEED TO FIGURE OUT HOW TO USE RESULTS
-         var params = {username: result[0].username, password: result[0].password, id:result[0].id};
-         console.log("****result", result);
-         console.log("****USERNAME", result[0].username);
-         console.log("****PASSWORD", result[0].password);
-         console.log("****id", result[0].id);
-         res.render('pages/login', params);
+         req.session.username = name;
+         console.log(result);
+         res.status(200).json({success:true});
       }
    });
    // res.end();
