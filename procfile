@@ -1,1 +1,1 @@
-web: node pass_server.js
+web: node index.js
