@@ -149,7 +149,7 @@ function authenticate(req,res)
          console.log("****USERNAME", result[0].username);
          console.log("****PASSWORD", result[0].password);
          console.log("****id", result[0].id);
-         res.render('pages/login', params);
+         res.render('pages/authenticate', params);
       }
    });
    // res.end();
