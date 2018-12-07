@@ -178,7 +178,7 @@ function login(req,res)
             console.log("result is null");
          }
          console.log("error is: " + error);
-         res.status(500).json({success: false, data: error}); 
+         res.redirect('/home.html'); 
       }
       else
       {
