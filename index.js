@@ -183,7 +183,7 @@ function login(req,res)
       else
       {
          // res.status(200).json(result);
-         req.session.username = name;
+         req.session.username = checkUsername;
          console.log(result);
          res.status(200).json({success:true});
       }
