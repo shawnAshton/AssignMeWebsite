@@ -155,13 +155,13 @@ function authenticate(req,res)
    // res.end();
 }
 
-app.post("/authenticate", authenticate) // how do I make secure password? it gets into database, but it times out here...
-function authenticate(req,res)
+app.post("/login", login) // how do I make secure password? it gets into database, but it times out here...
+function login(req,res)
 {
    var checkUsername = req.body.username;
    var checkPassword = req.body.password;
    console.log("CHECK USERNAME FROM POST IS " + checkUsername);
-   console.log("TRYING TO authenticate username");
+   console.log("TRYING TO login username");
 
 
    getUserFromDB(checkUsername, function(error,result)
@@ -187,7 +187,7 @@ function authenticate(req,res)
          console.log("****USERNAME", result[0].username);
          console.log("****PASSWORD", result[0].password);
          console.log("****id", result[0].id);
-         res.render('pages/authenticate', params);
+         res.render('pages/login', params);
       }
    });
    // res.end();
