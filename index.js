@@ -155,6 +155,44 @@ function authenticate(req,res)
    // res.end();
 }
 
+app.post("/login", login) // how do I make secure password? it gets into database, but it times out here...
+function login(req,res)
+{
+   var checkUsername = req.body.username;
+   var checkPassword = req.body.password;
+   console.log("CHECK USERNAME FROM POST IS " + checkUsername);
+   console.log("TRYING TO login username");
+
+
+   getUserFromDB(checkUsername, function(error,result)
+   {
+      if(error || result == null || result.length < 1)
+      {
+         console.log("length is: ");
+         console.log(result.length);
+         if (result == null)
+         {
+            console.log("result is null");
+         }
+         console.log("error is: " + error);
+         res.status(500).json({success: false, data: error}); 
+      }
+      else
+      {
+         // res.status(200).json(result);
+         console.log("ok...im almost there...\nindex 0 is this!!!!!!!!!!!!!!!!!!!!");
+         // I NEED TO FIGURE OUT HOW TO USE RESULTS
+         var params = {username: result[0].username, password: result[0].password, id:result[0].id};
+         console.log("****result", result);
+         console.log("****USERNAME", result[0].username);
+         console.log("****PASSWORD", result[0].password);
+         console.log("****id", result[0].id);
+         res.render('pages/login', params);
+      }
+   });
+   // res.end();
+}
+
 app.get("/user", getUser)
 function getUser(req,res)
 {
