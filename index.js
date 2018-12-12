@@ -267,22 +267,17 @@ function createUser(req,res)
             }
             else
             {
-               res.status(200).json({success: true, data: "success"});
+               console.log("this username and password already exists");
+               // I NEED TO FIGURE OUT HOW TO USE RESULTS
+               var params = {username: result[0].username, password: result[0].password, id:result[0].id};
+               console.log("****result", result);
+               console.log("****USERNAME", result[0].username);
+               console.log("****PASSWORD", result[0].password);
+               console.log("****id", result[0].id);
+               res.render('pages/authenticate', params);
             }
          })
 
-      }
-      else
-      {
-         // res.status(200).json(result);
-         console.log("this username and password already exists");
-         // I NEED TO FIGURE OUT HOW TO USE RESULTS
-         var params = {username: result[0].username, password: result[0].password, id:result[0].id};
-         console.log("****result", result);
-         console.log("****USERNAME", result[0].username);
-         console.log("****PASSWORD", result[0].password);
-         console.log("****id", result[0].id);
-         res.render('pages/authenticate', params);
       }
 
    })
