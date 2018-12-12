@@ -268,6 +268,8 @@ function createProject(req,res)
    var numRotations = req.body.totalMeetings; 
    var workers = req.body.names;
    var jobs = req.body.jobs;
+   var capabilities = req.body.capability;
+
    console.log("mytitle: " + title);
    console.log("numRotations: " + numRotations);
    console.log("NAMES");
@@ -279,6 +281,10 @@ function createProject(req,res)
    for(var i = 0; i < jobs.length; i++)
     {
       console.log("job #: " + i + jobs[i]);
+    }
+   for(var i = 0; i < capabilities.length; i++)
+    {
+      console.log("capabilities #: " + i + capabilities[i]);
     }
    console.log("TRYING TO CREATE PROJECT");
 }
