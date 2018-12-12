@@ -275,16 +275,13 @@ function createUser(req,res)
                console.log("****PASSWORD", result[0].password);
                console.log("****id", result[0].id);
                res.render('pages/authenticate', params);
+               res.end();
             }
          })
 
       }
 
    })
-
-
-
-   res.end();
 }
 
 app.post("/createProject", createProject) //WORK ON INPUTTING INTO DATABASE AND WHAT TO HAVE IT RETURN..?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
