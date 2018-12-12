@@ -246,7 +246,7 @@ function createUser(req,res)
    // make sure it doesnt exist already...
    var exists = true;
    var sql = "SELECT * FROM program_user pu WHERE pu.username = $1 and pu.password = $2";
-   var params = [name, pass];
+   var params = [newUsername, newPassword];
    pool.query(sql,params,function(err,result)
    {
       if(err)
