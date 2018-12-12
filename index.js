@@ -244,22 +244,25 @@ function createUser(req,res)
    console.log("TRYING TO CREATE username");
 
    // make sure it doesnt exist already...
-
    var exists = true;
-   getUserFromDB(newUsername, newPassword, function(error,result)
+   var sql = "SELECT * FROM program_user pu WHERE pu.username = $1 and pu.password = $2";
+   var params = [name, pass];
+   pool.query(sql,params,function(err,result)
    {
-      if(error || result == null || result.length < 1)
+      if(err)
       {
-
+         console.log("error in query: ")
+         console.log(err);
+      }
+      console.log("Found result: " + JSON.stringify(result.rows));
+      if(err || result.rows == null || result.rows.length < 1)
+      {
          exists = false;
       }
-      else
-      {
-         // res.status(200).json(result);
-         console.log("AAAAAAAAA this username already exists");
-      }
-   });
+      
+   })
 
+   // create it if it doesnt exist
    if (!exists)
    {
       var sql = "INSERT INTO program_user(username,password) VALUES ($1, $2)";
