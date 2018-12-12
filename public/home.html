@@ -86,7 +86,8 @@
       function createInputsForNames() 
       {
          var names = document.getElementsByName("names[]");
-         for (var i = 0; i < names.length; i++)
+         var capability = document.getElementsByName("capability[]");
+         for (var i = capability.length; i < names.length; i++)
          {
             addTextBoxes3();
          }
