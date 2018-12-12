@@ -258,6 +258,7 @@ function createUser(req,res)
       if(err || result.rows == null || result.rows.length < 1)
       {
          exists = false;
+         console.log("       POOOOOOOOOOOOOOOOTAYTO         ")
       }
       
    })
