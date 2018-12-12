@@ -243,6 +243,37 @@ function createUser(req,res)
    console.log("USERNAME FROM POST IS " + newUsername);
    console.log("TRYING TO CREATE username");
 
+   // make sure it doesnt exist already...
+
+
+   getUserFromDB(newUsername, newPassword, function(error,result)
+   {
+      if(error || result == null || result.length < 1)
+      {
+         console.log("length is: ");
+         console.log(result.length);
+         if (result == null)
+         {
+            console.log("result is null");
+         }
+         console.log("error is: " + error);
+         res.status(500).json({success: false, data: error}); 
+      }
+      else
+      {
+         // res.status(200).json(result);
+         console.log("this username and password already exists");
+         // I NEED TO FIGURE OUT HOW TO USE RESULTS
+         var params = {username: result[0].username, password: result[0].password, id:result[0].id};
+         console.log("****result", result);
+         console.log("****USERNAME", result[0].username);
+         console.log("****PASSWORD", result[0].password);
+         console.log("****id", result[0].id);
+         res.render('pages/authenticate', params);
+      }
+
+
+
 
    var sql = "INSERT INTO program_user(username,password) VALUES ($1, $2)";
    var params = [newUsername,newPassword];
