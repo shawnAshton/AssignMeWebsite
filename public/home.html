@@ -102,14 +102,22 @@
          var capability = document.getElementsByName("capability[]");
          if (names.length < jobs.length)
          {
-            capability.style("display", "inline-block");
+            for (var i = 0; i < capability.length; i++)
+            {
+               capability.style("display", "inline-block");
+            }
+            
             console.log("this!!!!!!!!!!!!!!!!!!!!! happening");
             return true;
          }
          else
          {
             console.log("this happening");
-            capability.style("display", "none");
+            for (var i = 0; i < capability.length; i++)
+            {
+               capability[i].style("display", "none");
+            }
+            
             return false;
          }
       }
