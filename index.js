@@ -272,7 +272,7 @@ function createUser(req,res)
          res.render('pages/authenticate', params);
       }
 
-
+   })
 
 
    var sql = "INSERT INTO program_user(username,password) VALUES ($1, $2)";
