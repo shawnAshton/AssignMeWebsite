@@ -246,7 +246,7 @@ function createUser(req,res)
    // make sure it doesnt exist already...
 
 
-   getUserFromDB(newUsername, newPassword, function(error,result)
+  getUserFromDB(newUsername, newPassword, function(error,result)
    {
       if(error || result == null || result.length < 1)
       {
@@ -257,7 +257,22 @@ function createUser(req,res)
             console.log("result is null");
          }
          console.log("error is: " + error);
-         res.status(500).json({success: false, data: error}); 
+         
+         var sql = "INSERT INTO program_user(username,password) VALUES ($1, $2)";
+         var params = [newUsername,newPassword];
+         pool.query(sql,params,function(err)
+         {
+            if (err)
+            {
+               console.log("error in createUser");
+               res.status(500).json({success: false, data: error});
+            }
+            else
+            {
+               res.status(200).json({success: true, data: "success"});
+            }
+         })
+
       }
       else
       {
@@ -275,20 +290,7 @@ function createUser(req,res)
    })
 
 
-   var sql = "INSERT INTO program_user(username,password) VALUES ($1, $2)";
-   var params = [newUsername,newPassword];
-   pool.query(sql,params,function(err)
-   {
-      if (err)
-      {
-         console.log("error in createUser");
-         res.status(500).json({success: false, data: error});
-      }
-      else
-      {
-         res.status(200).json({success: true, data: "success"});
-      }
-   })
+
    res.end();
 }
 
