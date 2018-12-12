@@ -99,6 +99,7 @@
          var jobs = document.getElementsByName("jobs[]");
          console.log('name length = '+ names.length);
          console.log('jobs length = '+ jobs.length);
+         var capability = document.getElementsByName("capability[]");
          if (names.length < jobs.length)
          {
             capability.style("display", "inline-block");
@@ -106,7 +107,6 @@
          }
          else
          {
-            var capability = document.getElementsByName("capability[]");
             capability.style("display", "none");
             return false;
          }
