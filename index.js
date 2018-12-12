@@ -261,7 +261,7 @@ function createUser(req,res)
       }
       
    })
-
+   console.log("exists is", exists);
    // create it if it doesnt exist
    if (!exists)
    {
