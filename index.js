@@ -250,8 +250,6 @@ function createUser(req,res)
    {
       if(error || result == null || result.length < 1)
       {
-         console.log("length is: ");
-         console.log(result.length);
          if (result == null)
          {
             console.log("result is null");
