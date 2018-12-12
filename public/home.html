@@ -7,6 +7,7 @@
    <title>Home Page</title>
    <script language="Javascript">
    function addTextBoxes() {
+      compare();
       //Create input types dynamically and insert in front of the button
       var newTextBoxName = document.createElement("input");
       var button = document.getElementById("button");
@@ -28,6 +29,7 @@
    }
 
       function addTextBoxes2() {
+      compare();
       //Create input types dynamically and insert in front of the button
       var newTextBoxJob = document.createElement("input");
       var button = document.getElementById("button");
@@ -49,6 +51,12 @@
       divTag.insertBefore(document.createTextNode(" "), newTextBoxJob);
 
    }
+
+      function compare() {
+         var names = document.getElementsByName("names[]");
+         console.log(names);
+      }
+
    </script>
    <link rel="stylesheet" type="text/css" href="pretty.css">
 </head>
