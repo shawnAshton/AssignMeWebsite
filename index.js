@@ -320,7 +320,7 @@ function addPeopleToDB(workers,capIsUndefined, capabilities, newestProjectId)
          }
       })
    }
-   res.status(500).json({success: true, data: "success in creating persons"});
+  // res.status(500).json({success: true, data: "success in creating persons"});
    
    // else
    // {
