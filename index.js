@@ -344,9 +344,9 @@ function createProject(req,res)
          // }
 
          //create the project
-         var sql = "INSERT INTO project(program_user_id, title) VALUES ($1, $2)";
+         var sql = "INSERT INTO project(program_user_id, title) VALUES ($1, $2) RETURNING id";
          var params = [program_usernames_id, title];
-         pool.query(sql,params,function(err)
+         pool.query(sql,params,function(err, resultOfProject)
          {
             if (err)
             {
@@ -368,6 +368,7 @@ function createProject(req,res)
 
                   }
                }
+               console.log('THIS SHOULD BE THE BRAND NEW ID: ', resultOfProject.rows[0].id);
                res.status(200).json({success: true, data: "success in inserting into project"});
             }
          })
