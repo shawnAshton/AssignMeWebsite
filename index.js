@@ -301,7 +301,8 @@ function addPeopleToDB(workers,capIsUndefined, capabilities, newestProjectId)
       var params = [];
       if(capIsUndefined)
       {
-         var one = 1;
+
+         var one = '1';
          params = [workers[i], one, newestProjectId];
       }
       else
@@ -312,7 +313,7 @@ function addPeopleToDB(workers,capIsUndefined, capabilities, newestProjectId)
       {
          if (err)
          {
-            console.log("error in createUser");
+            console.log("error in addPeopleToDB");
             res.status(500).json({success: false, data: " error in insert into worker"});
          }
          else
