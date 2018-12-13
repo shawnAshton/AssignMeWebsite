@@ -325,7 +325,7 @@ function addPeopleToDB(workers,capIsUndefined, capabilities, program_usernames_i
 
 function addJobsToDB(jobs, newestProjectId)
 {
-   console.log("I AM GETTING INTO THE ADD PEOPLE TO DB FUNCTION");
+   console.log("I AM GETTING INTO THE ADD jobs TO DB FUNCTION");
    for(var i = 0; i < jobs.length; i++)
    {
       var sql = "INSERT INTO job(job_title, project_id) VALUES ($1, $2)";
@@ -417,7 +417,7 @@ function createProject(req,res)
                   capabilities = ['garbage'];
                }
                addPeopleToDB(workers,capIsUndefined, capabilities, program_usernames_id);
-               addjobsToDB(jobs, newestProjectId);
+               addJobsToDB(jobs, newestProjectId);
 
 
 
