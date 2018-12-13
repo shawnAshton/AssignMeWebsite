@@ -414,6 +414,14 @@ function createProject(req,res)
                   capabilities = ['garbage'];
                }
                addPeopleToDB(workers,capIsUndefined, capabilities, newestProjectId);
+
+
+
+
+
+
+
+               
                //populate workers for the project
                // for(var i = 0; i < numRotations; i++)
                // {
