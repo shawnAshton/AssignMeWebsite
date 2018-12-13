@@ -295,7 +295,7 @@ function createUser(req,res)
 function addPeopleToDB(workers,capIsUndefined, capabilities, newestProjectId)
 {
 
-   for(var i = 0; i < worker.length; i++)
+   for(var i = 0; i < workers.length; i++)
    {
       var sql = "INSERT INTO worker(name, capability, program_user_id) VALUES ($1, $2, $3)";
       var params = [];
