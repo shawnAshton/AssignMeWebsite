@@ -322,7 +322,7 @@ function createProject(req,res)
       var params = [program_username];
       pool.query(sql,params,function(error,result)
       {
-         if(err)
+         if(error)
          {
             console.log("error in query: ")
             console.log(error);
