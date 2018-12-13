@@ -309,12 +309,11 @@ function addPeopleToDB(workers,capIsUndefined, capabilities, newestProjectId)
       {
          params = [workers[i], capabilities[i], newestProjectId];
       }
-      pool.query(sql,params,function(err, res)
+      pool.query(sql,params,function(err)
       {
          if (err)
          {
-            console.log("error in addPeopleToDB");
-            res.status(500).json({success: false, data: " error in insert into worker"});
+            console.log("error in addPeopleToDB: " + err);
          }
          else
          {
