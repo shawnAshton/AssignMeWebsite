@@ -313,13 +313,17 @@ function createProject(req,res)
       console.log("job #: " + i + jobs[i]);
    }
 
-   if (capabilities == 'undefined')
+   if (capabilities !== 'undefined')
    {
-      console.log("IT IS UNDEFINED!!!!!!!!!")
+      
       for(var i = 0; i < capabilities.length; i++)
       {
          console.log("capabilities #: " + i + capabilities[i]);
       }
+   }
+   else
+   {
+      console.log("IT IS UNDEFINED!!!!!!!!!")
    }
 
    //console.log("TRYING TO CREATE PROJECT");
