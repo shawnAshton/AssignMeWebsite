@@ -416,8 +416,12 @@ function createProject(req,res)
                {
                   capabilities = ['garbage'];
                }
-               addPeopleToDB(workers,capIsUndefined, capabilities, program_usernames_id);
-               addJobsToDB(jobs, newestProjectId);
+
+               addPeopleToDB(workers,capIsUndefined, capabilities, program_usernames_id, (error, result) => {
+                  addJobsToDB(jobs, newestProjectId, (error, result) => {
+                   res.status(200).json({success: true, data: "success in inserting into project"});
+                 });
+               });
 
 
 
@@ -438,8 +442,7 @@ function createProject(req,res)
 
                //    }
                // }
-               console.log("IMMEDDIATLY BEFORE RESPONSE")
-               res.status(200).json({success: true, data: "success in inserting into project"});
+
             }
          })
 
