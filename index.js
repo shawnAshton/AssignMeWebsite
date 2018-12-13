@@ -409,7 +409,11 @@ function createProject(req,res)
             {
                console.log('THIS SHOULD BE THE BRAND NEW ID: ', resultOfProject.rows[0].id);
                var newestProjectId = resultOfProject.rows[0].id;
-              // addPeopleToDB(workers,capIsUndefined, capabilities, newestProjectId);
+               if (capIsUndefined)
+               {
+                  capabilities = ['garbage'];
+               }
+               addPeopleToDB(workers,capIsUndefined, capabilities, newestProjectId);
                //populate workers for the project
                // for(var i = 0; i < numRotations; i++)
                // {
