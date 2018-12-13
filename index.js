@@ -299,6 +299,7 @@ function createProject(req,res)
    var workers = req.body.names;
    var jobs = req.body.jobs;
    var capabilities = req.body.capability;
+   var capIsUndefined = false;
 
    console.log("mytitle: " + title);
    console.log("numRotations: " + numRotations);
@@ -316,6 +317,7 @@ function createProject(req,res)
    if (!Array.isArray(capabilities) || !capabilities.length)
    {      
       console.log("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZIT IS UNDEFINED!!!!!!!!!");
+      capIsUndefined = true;
    }
    else
    {
