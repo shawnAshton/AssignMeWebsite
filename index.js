@@ -292,7 +292,7 @@ function createUser(req,res)
 }
 
 
-function addPeopleToDB(workers,capIsUndefined, capabilities, newestProjectId)
+function addPeopleToDB(workers,capIsUndefined, capabilities, program_usernames_id)
 {
    console.log("I AM GETTING INTO THE ADD PEOPLE TO DB FUNCTION");
    for(var i = 0; i < workers.length; i++)
@@ -307,7 +307,7 @@ function addPeopleToDB(workers,capIsUndefined, capabilities, newestProjectId)
       }
       else
       {
-         params = [workers[i], capabilities[i], newestProjectId];
+         params = [workers[i], capabilities[i], program_usernames_id];
       }
       pool.query(sql,params,function(err)
       {
@@ -414,7 +414,7 @@ function createProject(req,res)
                {
                   capabilities = ['garbage'];
                }
-               addPeopleToDB(workers,capIsUndefined, capabilities, newestProjectId);
+               addPeopleToDB(workers,capIsUndefined, capabilities, program_usernames_id);
 
 
 
