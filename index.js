@@ -314,7 +314,7 @@ function createProject(req,res)
             console.log("error in query: ")
             console.log(err);
          }
-         console.log("Found result in create user.. the username is... " + result.rows.id);
+         console.log("Found result in create user.. the username is... " + JSON.stringify(result.rows));
       })
 
 
