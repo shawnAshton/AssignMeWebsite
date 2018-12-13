@@ -291,6 +291,58 @@ function createUser(req,res)
 
 }
 
+
+function addPeopleToDB(workers,capIsUndefined, capabilities, newestProjectId)
+{
+
+   for(var i = 0; i < worker.length; i++)
+   {
+      var sql = "INSERT INTO worker(name, capability, program_user_id) VALUES ($1, $2, $3)";
+      var params = [];
+      if(capIsUndefined)
+      {
+         params = [workers[i], 1, newestProjectId];
+      }
+      else
+      {
+         params = [workers[i], capabilities[i], newestProjectId];
+      }
+      pool.query(sql,params,function(err, res)
+      {
+         if (err)
+         {
+            console.log("error in createUser");
+            res.status(500).json({success: false, data: " error in insert into project"});
+         }
+         else
+         {
+            console.log("created person number " + i + "in database");
+         }
+      })
+   }
+   res.status(500).json({success: true, data: "success in creating persons"});
+   
+   // else
+   // {
+   //    var sql = "INSERT INTO project(program_user_id, title) VALUES ($1, $2) RETURNING id";
+   //    var params = [program_usernames_id, title];
+   //    pool.query(sql,params,function(err, resultOfProject)
+   //    {
+   //       if (err)
+   //       {
+   //          console.log("error in createUser");
+   //          res.status(500).json({success: false, data: " error in insert into project"});
+   //       }
+   //       else
+   //       {
+
+   //       }
+   //    })
+   // }
+
+}
+
+
 app.post("/createProject", createProject) //WORK ON INPUTTING INTO DATABASE AND WHAT TO HAVE IT RETURN..?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 function createProject(req,res)
 {
@@ -355,20 +407,22 @@ function createProject(req,res)
             }
             else
             {
-               //populate workers for the project
-               for(var i = 0; i < numRotations; i++)
-               {
-                  // now lets create a project where there are more workers than jobs or equal...
-                  if (workers.length >= jobs.length)
-                  {
-                     
-                  }
-                  else // there are more jobs than workers... use capabilities...
-                  {
-
-                  }
-               }
                console.log('THIS SHOULD BE THE BRAND NEW ID: ', resultOfProject.rows[0].id);
+               var newestProjectId = resultOfProject.rows[0].id;
+               addPeopleToDB(workers,capIsUndefined, capabilities, newestProjectId);
+               //populate workers for the project
+               // for(var i = 0; i < numRotations; i++)
+               // {
+               //    // now lets create a project where there are more workers than jobs or equal...
+               //    if (workers.length >= jobs.length)
+               //    {
+                     
+               //    }
+               //    else // there are more jobs than workers... use capabilities...
+               //    {
+
+               //    }
+               // }
                res.status(200).json({success: true, data: "success in inserting into project"});
             }
          })
