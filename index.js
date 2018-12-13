@@ -303,7 +303,7 @@ function addPeopleToDB(workers,capIsUndefined, capabilities, program_usernames_i
       {
 
          var one = '1';
-         params = [workers[i], one, newestProjectId];
+         params = [workers[i], one, program_usernames_id];
       }
       else
       {
