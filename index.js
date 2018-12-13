@@ -270,7 +270,7 @@ function createUser(req,res)
             if (err)
             {
                console.log("error in createUser");
-               res.status(500).json({success: false, data: err});
+               res.status(500).json({success: false, data: "username exists.. cant create a new one with that username"});
             }
             else
             {
