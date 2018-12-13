@@ -305,18 +305,24 @@ function createProject(req,res)
    console.log("NAMES");
    console.log("worker count: " + workers.length);
    for(var i = 0; i < workers.length; i++)
-    {
+   {
       console.log("worker #: " + i + workers[i]);
-    }
+   }
    for(var i = 0; i < jobs.length; i++)
-    {
+   {
       console.log("job #: " + i + jobs[i]);
-    }
-   for(var i = 0; i < capabilities.length; i++)
-    {
-      console.log("capabilities #: " + i + capabilities[i]);
-    }
-   console.log("TRYING TO CREATE PROJECT");
+   }
+
+   if (capabilities == 'undefined')
+   {
+      console.log("IT IS UNDEFINED!!!!!!!!!")
+      for(var i = 0; i < capabilities.length; i++)
+      {
+         console.log("capabilities #: " + i + capabilities[i]);
+      }
+   }
+
+   //console.log("TRYING TO CREATE PROJECT");
 }
 
 app.listen(port, function()
