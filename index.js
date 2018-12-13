@@ -321,26 +321,28 @@ function addPeopleToDB(workers,capIsUndefined, capabilities, program_usernames_i
          }
       })
    }
-  // res.status(500).json({success: true, data: "success in creating persons"});
-   
-   // else
-   // {
-   //    var sql = "INSERT INTO project(program_user_id, title) VALUES ($1, $2) RETURNING id";
-   //    var params = [program_usernames_id, title];
-   //    pool.query(sql,params,function(err, resultOfProject)
-   //    {
-   //       if (err)
-   //       {
-   //          console.log("error in createUser");
-   //          res.status(500).json({success: false, data: " error in insert into project"});
-   //       }
-   //       else
-   //       {
+}
 
-   //       }
-   //    })
-   // }
-
+function addJobsToDB(jobs, newestProjectId)
+{
+   console.log("I AM GETTING INTO THE ADD PEOPLE TO DB FUNCTION");
+   for(var i = 0; i < jobs.length; i++)
+   {
+      var sql = "INSERT INTO job(job_title, project_id) VALUES ($1, $2)";
+      var params = [jobs[i], newestProjectId];
+      
+      pool.query(sql,params,function(err)
+      {
+         if (err)
+         {
+            console.log("error in addjobsToDB: " + err);
+         }
+         else
+         {
+            console.log("created job number " + i + " in database");
+         }
+      })
+   }
 }
 
 
@@ -415,7 +417,7 @@ function createProject(req,res)
                   capabilities = ['garbage'];
                }
                addPeopleToDB(workers,capIsUndefined, capabilities, program_usernames_id);
-
+               addjobsToDB(jobs, newestProjectId);
 
 
 
