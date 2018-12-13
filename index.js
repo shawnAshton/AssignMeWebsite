@@ -294,7 +294,7 @@ function createUser(req,res)
 
 function addPeopleToDB(workers,capIsUndefined, capabilities, newestProjectId)
 {
-
+   console.log("I AM GETTING INTO THE ADD PEOPLE TO DB FUNCTION");
    for(var i = 0; i < workers.length; i++)
    {
       var sql = "INSERT INTO worker(name, capability, program_user_id) VALUES ($1, $2, $3)";
@@ -421,7 +421,7 @@ function createProject(req,res)
 
 
 
-               
+
                //populate workers for the project
                // for(var i = 0; i < numRotations; i++)
                // {
@@ -435,6 +435,7 @@ function createProject(req,res)
 
                //    }
                // }
+               console.log("IMMEDDIATLY BEFORE RESPONSE")
                res.status(200).json({success: true, data: "success in inserting into project"});
             }
          })
