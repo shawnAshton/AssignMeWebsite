@@ -294,6 +294,18 @@ function createUser(req,res)
 app.post("/createProject", createProject) //WORK ON INPUTTING INTO DATABASE AND WHAT TO HAVE IT RETURN..?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 function createProject(req,res)
 {
+            // console.log("mytitle: " + title);
+         // console.log("numRotations: " + numRotations);
+         // console.log("NAMES");
+         // console.log("worker count: " + workers.length);
+         // for(var i = 0; i < workers.length; i++)
+         // {
+         //    console.log("worker #: " + i + workers[i]);
+         // }
+         // for(var i = 0; i < jobs.length; i++)
+         // {
+         //    console.log("job #: " + i + jobs[i]);
+         // }
    if(req.session.username) //only work if there is a program_user assigned to the new project
    {
       var title = req.body.projectTitle;
@@ -303,81 +315,65 @@ function createProject(req,res)
       var capabilities = req.body.capability;
       var capIsUndefined = false;
       var program_username = req.session.username;
+      var program_usernames_id = -1;
       console.log('myUserName is  ', program_username);
       //get users id
       var sql = "SELECT * FROM program_user pu WHERE pu.username = $1";
       var params = [program_username];
-      pool.query(sql,params,function(err,result)
+      pool.query(sql,params,function(error,result)
       {
          if(err)
          {
             console.log("error in query: ")
-            console.log(err);
+            console.log(error);
          }
          console.log("Found result in create user.. the username is...: " + result.rows[0].id);
+         program_usernames_id = result.rows[0].id;
+         if (!Array.isArray(capabilities) || !capabilities.length)
+         {      
+            console.log("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZIT IS UNDEFINED!!!!!!!!!");
+            capIsUndefined = true;
+         }
+         // else
+         // {
+         //    for(var i = 0; i < capabilities.length; i++)
+         //    {
+         //       console.log("capabilities #: " + i + capabilities[i]);
+         //    }
+           
+         // }
+
+         //create the project
+         var sql = "INSERT INTO project(program_user_id, title) VALUES ($1, $2)";
+         var params = [program_usernames_id, title];
+         pool.query(sql,params,function(err)
+         {
+            if (err)
+            {
+               console.log("error in createUser");
+               res.status(500).json({success: false, data: " error in insert into project"});
+            }
+            else
+            {
+               //populate workers for the project
+               for(var i = 0; i < numRotations; i++)
+               {
+                  // now lets create a project where there are more workers than jobs or equal...
+                  if (workers.length >= jobs.length)
+                  {
+                     
+                  }
+                  else // there are more jobs than workers... use capabilities...
+                  {
+
+                  }
+               }
+               res.status(200).json({success: true, data: "success in inserting into project"});
+            }
+         })
+
+
       })
-
-
-
-
-      // console.log("mytitle: " + title);
-      // console.log("numRotations: " + numRotations);
-      // console.log("NAMES");
-      // console.log("worker count: " + workers.length);
-      // for(var i = 0; i < workers.length; i++)
-      // {
-      //    console.log("worker #: " + i + workers[i]);
-      // }
-      // for(var i = 0; i < jobs.length; i++)
-      // {
-      //    console.log("job #: " + i + jobs[i]);
-      // }
-
-      if (!Array.isArray(capabilities) || !capabilities.length)
-      {      
-         console.log("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZIT IS UNDEFINED!!!!!!!!!");
-         capIsUndefined = true;
-      }
-      // else
-      // {
-      //    for(var i = 0; i < capabilities.length; i++)
-      //    {
-      //       console.log("capabilities #: " + i + capabilities[i]);
-      //    }
-        
-      // }
-
-      //create the project
-      // var sql = "INSERT INTO project(program_user_id, title) VALUES ($1, $2)";
-      // var params = [program_username, title];
-      // pool.query(sql,params,function(err)
-      // {
-      //    if (err)
-      //    {
-      //       console.log("error in createUser");
-      //       res.status(500).json({success: false, data: " exists.. cant create a new one with that username"});
-      //    }
-      //    else
-      //    {
-      //       res.status(200).json({success: true, data: "success in creation"});
-      //    }
-      // })
-
-      //populate workers for the project
-      for(var i = 0; i < numRotations; i++)
-      {
-         // now lets create a project where there are more workers than jobs or equal...
-         if (workers.length >= jobs.length)
-         {
-            
-         }
-         else // there are more jobs than workers... use capabilities...
-         {
-
-         }
-      }
-
-
    }
 }
 
