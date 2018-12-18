@@ -292,7 +292,7 @@ function createUser(req,res)
 }
 
 
-function addPeopleToDB(workers,capIsUndefined, capabilities, program_usernames_id)
+function addPeopleToDB(workers,capIsUndefined, capabilities, program_usernames_id, callback)
 {
    console.log("I AM GETTING INTO THE ADD PEOPLE TO DB FUNCTION");
    for(var i = 0; i < workers.length; i++)
@@ -418,7 +418,9 @@ function createProject(req,res)
                }
 
                addPeopleToDB(workers,capIsUndefined, capabilities, program_usernames_id, (error, result) => {
+                  console.log("GETTING RDY TO ADD JOBS TO DB");
                   addJobsToDB(jobs, newestProjectId, (error, result) => {
+                     console.log("done adding jobs");
                    res.status(200).json({success: true, data: "success in inserting into project"});
                  });
                });
